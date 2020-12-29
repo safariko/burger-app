@@ -25,7 +25,7 @@
 .OrderButton:hover, .OrderButton:active {
     background-color: #A0DB41;
     border: 1px solid #966909;
-    color: #966909;
+    color: #9e8627;
 }
 
 .OrderButton:disabled {
@@ -36,7 +36,7 @@
 }
 
 .OrderButton:not(:disabled) {
-    animation: enable 0.3s linear;
+    animation: enable 1s linear;
 }
 
 @keyframes enable {
