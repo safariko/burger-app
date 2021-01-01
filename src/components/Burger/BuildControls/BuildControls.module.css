@@ -1,6 +1,6 @@
 .BuildControls {
     width: 100%;
-    background-color: #cf8f2e;
+    background-color: #CF8F2E;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -8,7 +8,6 @@
     margin: auto;
     padding: 10px 0;
 }
-
 
 .OrderButton {
     background-color: #DAD735;
@@ -25,7 +24,7 @@
 .OrderButton:hover, .OrderButton:active {
     background-color: #A0DB41;
     border: 1px solid #966909;
-    color: #9e8627;
+    color: #966909;
 }
 
 .OrderButton:disabled {
@@ -36,7 +35,7 @@
 }
 
 .OrderButton:not(:disabled) {
-    animation: enable 1s linear;
+    animation: enable 0.3s linear;
 }
 
 @keyframes enable {
