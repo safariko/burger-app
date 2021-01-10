@@ -37,7 +37,7 @@ class BurgerBuilder extends Component {
                 this.setState({ ingredients: response.data })
             })
             .catch(error => {
-                this.setState({error:true})
+                this.setState({ error: true })
             })
     }
 
@@ -100,7 +100,7 @@ class BurgerBuilder extends Component {
             customer: {
                 name: 'Safar',
                 address: {
-                    street: '5400 ramsey 1',
+                    street: '5400 ramsey st',
                     zipCode: '73400',
                     country: 'USA'
                 },
@@ -123,9 +123,11 @@ class BurgerBuilder extends Component {
         const disabledInfo = {
             ...this.state.ingredients
         };
+
         for (let key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
+
         let orderSummary = null;
         if (this.state.ingredients) {
             orderSummary = <OrderSummary
@@ -140,7 +142,7 @@ class BurgerBuilder extends Component {
             orderSummary = <Spinner />
         }
 
-        let burger = this.state.error? <p>Ingredients can't be loaded!</p> : <Spinner />;
+        let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
 
         if (this.state.ingredients) {
             burger = (
@@ -159,7 +161,10 @@ class BurgerBuilder extends Component {
 
         return (
             <Aux>
-                <Modal modalVisible={this.state.modalVisible} hideModalHandler={this.hideModalHandler}>
+                <Modal
+                    modalVisible={this.state.modalVisible}
+                    hideModalHandler={this.hideModalHandler}
+                >
                     {orderSummary}
                 </Modal>
                 {burger}
