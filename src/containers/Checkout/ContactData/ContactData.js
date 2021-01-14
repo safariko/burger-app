@@ -96,13 +96,12 @@ class ContactData extends Component {
 
     orderHandler = (event) => {
         event.preventDefault();
-        console.log(this.props.ingredients)
         this.setState({ loading: true });
 
         const formData = {}
 
-        for (let formElementIdentifier in this.state.orderForm) {
-            formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
+        for (let formElement in this.state.orderForm) {
+            formData[formElement] = this.state.orderForm[formElement].value;
         }
 
         const order = {
@@ -141,6 +140,7 @@ class ContactData extends Component {
     }
 
     inputChangedHanlder = (event, inputIdentifier) => {
+
         const updatedOrderForm = {
             ...this.state.orderForm
         }
@@ -151,22 +151,21 @@ class ContactData extends Component {
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-        
-        let formIsValid = true;
-        for (let inputIdentifierr in updatedOrderForm) {
-            formIsValid = updatedOrderForm[inputIdentifierr].valid && formIsValid;
-        }
 
+        let formIsValid = true;
+        for (let identifer in updatedOrderForm) {
+            formIsValid = updatedOrderForm[identifer].valid && formIsValid;
+        }
         this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid})
     }
 
     render() {
 
         const formElementsArray = [];
-        for (let key in this.state.orderForm) {
+        for (let identifer in this.state.orderForm) {
             formElementsArray.push({
-                id: key,
-                config: this.state.orderForm[key],
+                id: identifer,
+                data: this.state.orderForm[identifer],
             })
         }
 
@@ -175,18 +174,19 @@ class ContactData extends Component {
                 {formElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        touched={formElement.config.touched}
+                        elementType={formElement.data.elementType}
+                        elementConfig={formElement.data.elementConfig}
+                        value={formElement.data.value}
+                        invalid={!formElement.data.valid}
+                        shouldValidate={formElement.data.validation}
+                        touched={formElement.data.touched}
                         changed={(event) => this.inputChangedHanlder(event, formElement.id)}
                     />
                 ))}
                 <Button btnType="Success" disabled={!this.state.formIsValid}>Order</Button>
             </form>
         );
+
         if (this.state.loading) {
             form = <Spinner />
         }

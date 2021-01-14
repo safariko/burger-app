@@ -18,17 +18,16 @@ const INGREDIENT_PRICES = {
 };
 
 class BurgerBuilder extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {...}
-    // }
-    state = {
-        ingredients: null,
-        totalPrice: 4,
-        purchasable: false,
-        modalVisible: false,
-        loading: false,
-        error: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            ingredients: null,
+            totalPrice: 4,
+            purchasable: false,
+            modalVisible: false,
+            loading: false,
+            error: false
+        }
     }
 
     componentDidMount() {
@@ -99,17 +98,18 @@ class BurgerBuilder extends Component {
             queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
         }
 
-        queryParams.push('price='+this.state.totalPrice);
+        queryParams.push('price=' + this.state.totalPrice);
 
         const queryString = queryParams.join('&');
 
         this.props.history.push({
             pathname: '/checkout',
-            search: '?'+ queryString
+            search: '?' + queryString
         });
     }
 
     render() {
+
         const disabledInfo = {
             ...this.state.ingredients
         };

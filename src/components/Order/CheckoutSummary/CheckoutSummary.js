@@ -20,7 +20,6 @@ const checkoutSummary = (props) => {
             >CONTINUE</Button>
         </div>
     )
-
 }
 
 export default checkoutSummary;
